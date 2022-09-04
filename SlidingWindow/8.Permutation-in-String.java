@@ -86,3 +86,49 @@ class StringPermutation {
     System.out.println("Permutation exist: " + StringPermutation.findPermutation("aaacb", "abc"));
   }
 }
+
+//My Solution: 
+
+import java.util.*;
+
+class StringPermutation {
+  public static boolean findPermutation(String str, String pattern) {
+    int windowStart = 0; 
+    int windowEnd = 0; 
+
+    // "odicf" "dc" output = false
+
+
+    HashMap<Character, Integer> map = new HashMap<>();
+
+    for (char chr : pattern.toCharArray()){
+      map.put(chr, map.getOrDefault(chr, 0) + 1);
+    }
+
+    HashMap<Character, Integer> mapCopy = new HashMap<>(map);
+
+    for(windowEnd = 0; windowEnd < str.length(); windowEnd++){
+      char left = str.charAt(windowEnd);
+
+      if(mapCopy.containsKey(left)){
+        int val = mapCopy.get(left);
+
+        if(val <= 1){
+          mapCopy.remove(left);
+        } else{
+          mapCopy.put(left, val - 1 );
+        }
+        if(mapCopy.size() == 0){
+          return true;
+        }
+      }
+      else{
+        //restore hashmap
+        mapCopy = new HashMap<>(map);
+        windowStart = windowEnd; 
+      }   
+    }
+    return false;
+  }
+}
+

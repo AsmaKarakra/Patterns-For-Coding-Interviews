@@ -23,7 +23,7 @@ Explanation: Replace the 'b' or 'd' with 'c' to have the longest repeating subst
 **/
 
 
-//Solution: Time: O(n) n= letters in input string | Space O(c) - c is distinct chars in string 
+//Solution: Time: O(n) n= letters in input string | Space O(1) - 26 distinct chars in string stored in hashmap in worst case 
 
 class CharacterReplacement {
   public static int findLength(String str, int k) {

@@ -111,6 +111,10 @@ class Program {
                     }
                 }
             }
+            
+             if (sortedOrder.size() != vertices) // topological sort is not possible as the graph has a cycle
+                    return new ArrayList<>();
+
             return sortedOrder;
         }
 
